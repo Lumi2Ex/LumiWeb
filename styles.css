@@ -1,0 +1,42 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+body#index, body#music, body#gallery {
+  background-image: url("/wired.png");
+  background-size: cover;
+  font-family: "Jetbrains Mono";
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+}
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+.navbar a:hover {
+  text-decoration: underline;
+  transition: ease 0.2s;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+}
+
+.card {
+  display: flex;
+  flex-flow: column;
+  background-color: rgb(16, 95, 16);
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}/*# sourceMappingURL=styles.css.map */
