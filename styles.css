@@ -34,6 +34,8 @@ body#index, body#music, body#gallery {
   padding: 5px;
   min-height: 0;
   align-items: stretch;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 
 .card {
@@ -47,14 +49,7 @@ body#index, body#music, body#gallery {
   padding: 20px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  /* Hide scrollbar but keep scrolling functional */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
   border-radius: 10px;
-}
-.card::-webkit-scrollbar {
-  width: 0;
-  height: 0;
 }
 .card h2 {
   font-family: "Playfair Display";
@@ -63,14 +58,7 @@ body#index, body#music, body#gallery {
   margin-top: 0;
 }
 
-/* Hide scrollbar but keep scrolling functional */
-.card {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-.card::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-/*# sourceMappingURL=styles.css.map */
+ul li a {
+  text-decoration: none;
+  color: black;
+}/*# sourceMappingURL=styles.css.map */
