@@ -1,5 +1,6 @@
 /* FONTS */
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 body#index, body#music, body#gallery {
   background-image: url("/wired.png");
   background-size: cover;
@@ -30,13 +31,46 @@ body#index, body#music, body#gallery {
   flex: 1;
   display: flex;
   gap: 5px;
+  padding: 5px;
+  min-height: 0;
+  align-items: stretch;
 }
 
 .card {
   display: flex;
   flex-flow: column;
-  background-color: rgb(16, 95, 16);
-  flex: 1;
+  background: hsla(130, 41%, 36%, 0.5);
+  background: linear-gradient(135deg, hsla(130, 41%, 36%, 0.3) 0%, hsla(182, 43%, 40%, 0.5) 100%);
+  background: -webkit-linear-gradient(135deg, hsla(130, 41%, 36%, 0.3) 0%, hsla(182, 43%, 40%, 0.5) 100%);
+  flex: 1 1 0;
+  min-height: 0;
   padding: 20px;
   overflow-y: auto;
-}/*# sourceMappingURL=styles.css.map */
+  -webkit-overflow-scrolling: touch;
+  /* Hide scrollbar but keep scrolling functional */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  border-radius: 10px;
+}
+.card::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.card h2 {
+  font-family: "Playfair Display";
+  font-weight: 900;
+  font-size: xx-large;
+  margin-top: 0;
+}
+
+/* Hide scrollbar but keep scrolling functional */
+.card {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.card::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,7 +1,8 @@
 /* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-body#index, body#music, body#gallery{
+body#index, body#music, body#gallery {
     background-image: url("/wired.png");
     background-size: cover;
     font-family: "Jetbrains Mono";
@@ -11,33 +12,61 @@ body#index, body#music, body#gallery{
     flex-direction: column;
 }
 
-.navbar{
+.navbar {
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
     padding: 10px;
-    a{
+    
+    a {
         text-decoration: none;
         color: white;
-    }
-    a:hover{
-        text-decoration: underline;
-        transition: ease 0.2s;
+        
+        &:hover {
+            text-decoration: underline;
+            transition: ease 0.2s;
+        }
     }
 }
 
 .container {
     flex: 1;
     display: flex;
-    gap: 5px; 
+    gap: 5px;
+    padding: 5px; // Gap from edges
+    min-height: 0;
+    align-items: stretch;
 }
 
-.card{
+.card {
     display: flex;
     flex-flow: column;
-    background-color: rgb(16, 95, 16);
-    flex: 1;
+    
+    background: hsla(130, 41%, 36%, 0.5);
+    background: linear-gradient(135deg, hsla(130, 41%, 36%, 0.3) 0%, hsla(182, 43%, 40%, 0.5) 100%);
+    background: -moz-linear-gradient(135deg, hsla(130, 41%, 36%, 0.3) 0%, hsla(182, 43%, 40%, 0.5) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(130, 41%, 36%, 0.3) 0%, hsla(182, 43%, 40%, 0.5) 100%);
+
+    flex: 1 1 0;
+    min-height: 0;
     padding: 20px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar but keep scrolling functional */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+    border-radius: 10px;
+
+    h2 {
+        font-family: "Playfair Display";
+        font-weight: 900;
+        font-size: xx-large;
+        margin-top: 0;
+    }
 }
