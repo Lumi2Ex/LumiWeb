@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumiWeb</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="music">
+    <div class="navbar">
+        <a href="index.html"><img src="/9-Madeline icon.jpg" alt="my profile picture :3" style="width: 30px; height: 30px;"></a>
+        <a href="home.html">/home</a>
+        <a href="music.html">/music</a>
+        <a href="gallery.html">/gallery</a>
+        <a href="wop.html">/Wheel Of Pronouns</a>
+    </div>
+    <div class="container wheel-container">
+        <main class="center">
+            <h1>Pronoun Wheel</h1>
+            <div class="wheel-wrap">
+                <div id="wheel" class="wheel">
+                    <canvas id="wheel-canvas" width="400" height="400"></canvas>
+                </div>
+                <div class="pointer">▼</div>
+            </div>
+            <div class="controls">
+                <button id="spin">Spin</button>
+                <div id="result" class="result">Press Spin</div>
+            </div>
+        </main>
+    </div>
+    <style>
+    .wheel-container{display:flex;justify-content:center;align-items:center}
+    .center{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px}
+    .wheel-wrap{position:relative;width:400px;height:400px}
+    .wheel{width:100%;height:100%;border-radius:50%;overflow:hidden}
+    #wheel-canvas{width:100%;height:100%;display:block}
+    .pointer{position:absolute;left:50%;top:6px;transform:translateX(-50%);font-size:24px}
+    .controls{display:flex;gap:12px;align-items:center}
+    #spin{padding:8px 14px;font-size:16px;cursor:pointer}
+    .result{min-width:160px;padding:8px 12px;border-radius:6px;background:#f3f3f3;text-align:center}
+    </style>
+
+    <script>
+    (function(){
+        const pronouns = ['she/her','he/him','they/them','it/its'];
+        const canvas = document.getElementById('wheel-canvas');
+        const ctx = canvas.getContext('2d');
+        const wrapper = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spin');
+        const resultEl = document.getElementById('result');
+        const size = Math.min(canvas.width, canvas.height);
+        const cx = canvas.width/2, cy = canvas.height/2, radius = size/2 - 8;
+        const n = pronouns.length;
+        const segDeg = 360 / n;
+
+        function draw(){
+            const colors = ['#FFB3BA','#FFDFBA','#FFFFBA','#BAFFC9','#BAE1FF','#D7BAFF','#FFC8DD','#E8F8FF'];
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.save();
+            ctx.translate(cx,cy);
+            const start = -Math.PI/2; // start at top
+            for(let i=0;i<n;i++){
+                const angle = start + i*(2*Math.PI/n);
+                ctx.beginPath();
+                ctx.moveTo(0,0);
+                ctx.arc(0,0,radius, angle, angle + 2*Math.PI/n);
+                ctx.closePath();
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.fill();
+                // label
+                ctx.save();
+                const mid = angle + (Math.PI/n);
+                ctx.rotate(mid);
+                ctx.translate(radius*0.6,0);
+                ctx.rotate(Math.PI/2);
+                ctx.fillStyle = '#111';
+                ctx.font = '16px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(pronouns[i], 0, 0);
+                ctx.restore();
+            }
+            // center
+            ctx.beginPath();
+            ctx.fillStyle = '#fff';
+            ctx.arc(0,0,36,0,Math.PI*2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        draw();
+
+        let spinning = false;
+        spinBtn.addEventListener('click', ()=>{
+            if(spinning) return;
+            spinning = true;
+            resultEl.textContent = 'Spinning...';
+            const extra = Math.random()*360;
+            const spins = Math.floor(Math.random()*3)+4; // 4-6 full spins
+            const total = spins*360 + extra;
+            // animate via transform
+            wrapper.style.transition = 'transform 4s cubic-bezier(.22,.9,.32,1)';
+            wrapper.style.transform = `rotate(${total}deg)`;
+            wrapper.addEventListener('transitionend', function done(){
+                wrapper.style.transition = '';
+                const final = total % 360;
+                const idx = Math.floor(((360 - final) / segDeg)) % n;
+                const chosen = pronouns[(idx + n) % n];
+                resultEl.textContent = chosen;
+                spinning = false;
+                wrapper.removeEventListener('transitionend', done);
+            });
+        });
+    })();
+    </script>
+
+</body>
+</html>
